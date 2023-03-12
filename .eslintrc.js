@@ -16,5 +16,6 @@ module.exports = {
     project: './tsconfig.json'
   },
   rules: {
-  }
+    '@typescript-eslint/indent': [0]
+  },
 }

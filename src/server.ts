@@ -1,20 +1,17 @@
-import * as dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
-
-dotenv.config();
-
-const { SERVER_PORT, SERVER_DOMAIN } = process.env;
-
-if (SERVER_PORT === undefined || SERVER_DOMAIN === undefined) {
-  throw new Error('Please define constants in .env file');
-}
+import config from './config';
+import postsRouter from './routers/posts-router';
 
 const server = express();
 
+// Middlewares
+
 server.use(morgan('tiny'));
 server.use(express.static('public'));
+server.use(express.json());
+server.use('/api/posts', postsRouter);
 
-server.listen(SERVER_PORT, () => {
-  console.log(`server is runing on: http://${SERVER_DOMAIN}:${SERVER_PORT}`);
+server.listen(config.server.port, () => {
+  console.log(`server is runing on: http://${config.server.domain}:${config.server.port}`);
 });

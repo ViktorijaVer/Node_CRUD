@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import posts from './posts-controller-data';
+import postsData from './posts-controller-data';
 
 type Post = {
   id: number,

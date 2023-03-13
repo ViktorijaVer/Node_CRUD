@@ -1,5 +1,3 @@
-declare global {
-
-}
-
-export { };
+type ResponseError = {
+  error: string
+};

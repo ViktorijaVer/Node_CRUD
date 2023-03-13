@@ -1,12 +1,12 @@
 import { RequestHandler } from 'express';
 
-type ResponseError = {
-  error: string
-};
-
 type Post = {
   id: number,
   title: string,
+};
+
+type ResponseError = {
+  error: string
 };
 
 const posts: Post[] = [
@@ -17,19 +17,19 @@ const posts: Post[] = [
 ];
 
 export const getPosts: RequestHandler<
-undefined,
+{},
 Post[],
-undefined,
-undefined
+{},
+{}
 > = (req, res) => {
   res.status(200).json(posts);
 };
 
 export const createPosts: RequestHandler<
-undefined,
+{},
 Post | ResponseError,
-undefined | { title: string | undefined },
-undefined
+{ title: string | undefined },
+{}
 > = (req, res) => {
   const title = req.body?.title;
   if (title === undefined) {
